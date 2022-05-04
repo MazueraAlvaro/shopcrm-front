@@ -6,7 +6,8 @@
 		"start": "next start",
 		"type-check": "tsc",
 		"test": "echo 'OK'",
-		"lint": "npm run lint:ts && npm run lint:eslint"
+		"lint": "npm run lint:ts && npm run lint:eslint",
+		"lint:eslint": "eslint \"src/**/*.{ts,tsx}\""
 	},
 	"dependencies": {
 		"lodash": "^4.17.21",
