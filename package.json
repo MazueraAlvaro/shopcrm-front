@@ -7,7 +7,8 @@
 		"type-check": "tsc",
 		"test": "echo 'OK'",
 		"lint": "npm run lint:ts && npm run lint:eslint",
-		"lint:eslint": "eslint \"src/**/*.{ts,tsx}\""
+		"lint:eslint": "eslint \"src/**/*.{ts,tsx}\"",
+		"lint:ts": "tsc -p ./tsconfig.lint.json --noEmit"
 	},
 	"dependencies": {
 		"lodash": "^4.17.21",
