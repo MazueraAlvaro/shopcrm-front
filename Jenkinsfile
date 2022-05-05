@@ -7,6 +7,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
+                echo "Build!! ${env.ENV_NAME} ${env.GIT_BRANCH}"
                 sh 'npm ci'
             }
         }
