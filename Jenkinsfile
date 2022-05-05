@@ -13,9 +13,6 @@ pipeline {
             }
         }
         stage('Deploy') {
-            when{
-                CHANGE_ID
-            }
             steps {
                 sh 'echo "Deploy!!"'
             }
