@@ -2,7 +2,7 @@ pipeline {
     agent any
     tools {nodejs "nodejs-14"}
     environment {
-        ENV_NAME = "${env.GIT_BRANCH.contains('origin') ? env.GIT_BRANCH.substring(7) : 'PR'}"
+        ENV_NAME = "${env.GIT_BRANCH.contains('pr') ? 'PR' : env.GIT_BRANCH.substring(env.GIT_BRANCH.indexOf('/') + 1)}"
     }
     stages {
         stage('Build') {
