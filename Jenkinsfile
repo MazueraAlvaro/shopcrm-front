@@ -14,7 +14,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                sh 'echo "Deploy!! ${CHANGE_ID} PR"'
+                sh 'echo "Deploy!! ${CHANGE_ID} ${BRANCH_NAME}"'
             }
         }
     }
