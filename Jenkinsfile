@@ -12,5 +12,13 @@ pipeline {
                 sh 'npm test'
             }
         }
+        stage('Deploy') {
+            when{
+                CHANGE_ID
+            }
+            steps {
+                sh 'echo "Deploy!!"'
+            }
+        }
     }
 }

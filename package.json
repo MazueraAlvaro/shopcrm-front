@@ -5,10 +5,13 @@
 		"build": "next build",
 		"start": "next start",
 		"type-check": "tsc",
-		"test": "echo 'OK'",
 		"lint": "npm run lint:ts && npm run lint:eslint",
 		"lint:eslint": "eslint \"src/**/*.{ts,tsx}\"",
-		"lint:ts": "tsc -p ./tsconfig.lint.json --noEmit"
+		"lint:ts": "tsc -p ./tsconfig.lint.json --noEmit",
+		"test": "jest --watchAll=false --passWithNoTests",
+		"test:coverage": "jest --coverage --watchAll=false --passWithNoTests",
+		"test:report": "jest --testResultsProcessor='jest-sonar-reporter' --coverage --watchAll=false --passWithNoTests",
+		"test:watch": "jest --watchAll=true --passWithNoTests"
 	},
 	"dependencies": {
 		"lodash": "^4.17.21",
@@ -20,6 +23,8 @@
 		"@types/node": "^12.12.21",
 		"@types/react": "^17.0.2",
 		"@types/react-dom": "^17.0.1",
+		"jest": "^28.0.3",
+		"ts-jest": "^28.0.1",
 		"typescript": "4.0"
 	}
 }
