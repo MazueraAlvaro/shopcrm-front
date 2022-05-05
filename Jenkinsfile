@@ -13,6 +13,9 @@ pipeline {
             }
         }
         stage('Deploy') {
+            when {
+                expression { return !env.GIT_BRANCH.contains('pr')}
+            }
             steps {
                 echo "Deploy!! ${env.CHANGE_ID} ${env.GIT_BRANCH}"
             }
