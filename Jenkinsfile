@@ -1,9 +1,13 @@
 pipeline {
     agent any
     tools {nodejs "nodejs-14"}
+    environment {
+        ENV_NAME = "${env.GIT_BRANCH.contains('origin') ? env.GIT_BRANCH.substring(7) : 'PR'}"
+    }
     stages {
         stage('Build') {
             steps {
+                echo "Build!! ${env.ENV_NAME} ${env.GIT_BRANCH}"
                 sh 'npm ci'
             }
         }
@@ -17,7 +21,7 @@ pipeline {
                 expression { return !env.GIT_BRANCH.contains('pr')}
             }
             steps {
-                echo "Deploy!! ${env.CHANGE_ID} ${env.GIT_BRANCH}"
+                echo "Deploy!!! ${env.ENV_NAME} ${env.GIT_BRANCH}"
             }
         }
     }
