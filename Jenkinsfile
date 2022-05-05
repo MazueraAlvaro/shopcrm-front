@@ -14,7 +14,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                sh 'echo "Deploy!!"'
+                sh 'echo "Deploy!! ${CHANGE_ID} PR"'
             }
         }
     }
