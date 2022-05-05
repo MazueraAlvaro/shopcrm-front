@@ -21,7 +21,7 @@ pipeline {
                 expression { return !env.GIT_BRANCH.contains('pr')}
             }
             steps {
-                echo "Deploy!! ${env.ENV_NAME} ${env.GIT_BRANCH}"
+                echo "Deploy!!! ${env.ENV_NAME} ${env.GIT_BRANCH}"
             }
         }
     }
