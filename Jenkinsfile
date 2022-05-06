@@ -20,7 +20,9 @@ pipeline {
         }
         stage('Build image') {
             steps{
-                dockerImage = docker.build DO_IMAGE_NAME
+                script {
+                    dockerImage = docker.build DO_IMAGE_NAME
+                }
             }            
         }
         stage('Pushing image'){
@@ -28,8 +30,10 @@ pipeline {
                 registryCredential = 'dockerhublogin'
                 }
             steps{
-                docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ){
+                script {
+                    docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ){
                     dockerImage.push("latest")
+                    }
                 }
             }
         }
