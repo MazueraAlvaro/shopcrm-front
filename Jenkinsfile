@@ -20,7 +20,7 @@ pipeline {
         }
         stage('Build image') {
             steps{
-                dockerImage = docker.build dockerimagename
+                dockerImage = docker.build DO_IMAGE_NAME
             }            
         }
         stage('Pushing image'){
@@ -39,7 +39,7 @@ pipeline {
             }
             steps {
                 echo "Deploy!!! ${env.ENV_NAME} ${env.GIT_BRANCH}"
-                kubernetesDeploy(configs: "deploymentservice.yml", kubeconfigId: "kubernetes")
+                //kubernetesDeploy(configs: "deploymentservice.yml", kubeconfigId: "kubernetes")
             }
         }
     }
