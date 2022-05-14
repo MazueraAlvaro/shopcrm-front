@@ -6,6 +6,31 @@ pipeline {
         dockerImage = ""
     }
     stages {
+        stage('Install Dependencies') {
+            agent { 
+                docker { 
+                    image 'node:14'
+                    reuseNode true
+                    alwaysPull false
+                }
+            }
+            steps {
+                sh 'npm ci'
+            }
+        }
+        stage('Static Analysis') {
+            agent { 
+                docker { 
+                    image 'node:14'
+                    reuseNode true
+                    alwaysPull false
+                }
+            }
+            steps {
+                echo "Build!! ${env.ENV_NAME} ${env.GIT_BRANCH}"
+                sh 'npm run lint'
+            }
+        }
         stage('Build') {
             agent { 
                 docker { 
@@ -16,7 +41,7 @@ pipeline {
             }
             steps {
                 echo "Build!! ${env.ENV_NAME} ${env.GIT_BRANCH}"
-                sh 'npm ci'
+                sh 'npm build'
             }
         }
         stage('Test') {
@@ -31,14 +56,20 @@ pipeline {
                 sh 'npm test'
             }
         }
-        stage('Build image') {
+        stage('Image Build') {
+            when {
+                expression { return !env.GIT_BRANCH.contains('pr')}
+            }
             steps{
                 script {
                     dockerImage = docker.build DO_IMAGE_NAME
                 }
             }            
         }
-        stage('Pushing image'){
+        stage('Publish'){
+            when {
+                expression { return !env.GIT_BRANCH.contains('pr')}
+            }
             environment {
                 registryCredential = 'dockerhublogin'
                 }
