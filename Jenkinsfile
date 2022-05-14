@@ -7,9 +7,9 @@ pipeline {
             reuseNode true
         }
     }
-    // environment {
-    //     // ENV_NAME = "${env.GIT_BRANCH.contains('pr') ? 'PR' : env.GIT_BRANCH.substring(env.GIT_BRANCH.indexOf('/') + 1)}"
-    // }
+    environment {
+        ENV_NAME = "${env.GIT_BRANCH.contains('pr') ? 'PR' : env.GIT_BRANCH.substring(env.GIT_BRANCH.indexOf('/') + 1)}"
+    }
     stages {
         stage('Build') {
             steps {
