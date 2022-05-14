@@ -1,5 +1,5 @@
 pipeline {
-    agent none
+    agent any
     environment {
         ENV_NAME = "develop"
         DO_IMAGE_NAME = "mazueraalvaro/shopcrm-front"
@@ -11,6 +11,7 @@ pipeline {
                 docker { 
                     image 'node:14'
                     reuseNode true
+                    alwaysPull false
                 }
             }
             steps {
@@ -23,6 +24,7 @@ pipeline {
                 docker { 
                     image 'node:14'
                     reuseNode true
+                    alwaysPull false
                 }
             }
             steps {
