@@ -1,7 +1,7 @@
 pipeline {
     agent none
     environment {
-        ENV_NAME = "${env.GIT_BRANCH.contains('pr') ? 'PR' : env.GIT_BRANCH.substring(env.GIT_BRANCH.indexOf('/') + 1)}"
+        ENV_NAME = "develop"
         DO_IMAGE_NAME = "mazueraalvaro/shopcrm-front"
         dockerImage = ""
     }
