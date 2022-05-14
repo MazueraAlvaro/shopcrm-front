@@ -1,10 +1,5 @@
 pipeline {
-    agent { 
-        docker { 
-            image 'node:14'
-            reuseNode true
-        }
-    }
+    agent none
     environment {
         ENV_NAME = "${env.GIT_BRANCH.contains('pr') ? 'PR' : env.GIT_BRANCH.substring(env.GIT_BRANCH.indexOf('/') + 1)}"
         DO_IMAGE_NAME = "mazueraalvaro/shopcrm-front"
@@ -12,12 +7,24 @@ pipeline {
     }
     stages {
         stage('Build') {
+            agent { 
+                docker { 
+                    image 'node:14'
+                    reuseNode true
+                }
+            }
             steps {
                 echo "Build!! ${env.ENV_NAME} ${env.GIT_BRANCH}"
                 sh 'npm ci'
             }
         }
         stage('Test') {
+            agent { 
+                docker { 
+                    image 'node:14'
+                    reuseNode true
+                }
+            }
             steps {
                 sh 'npm test'
             }
@@ -36,7 +43,7 @@ pipeline {
             steps{
                 script {
                     docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ){
-                    dockerImage.push("latest")
+                    dockerImage.push("${ENV_NAME}")
                     }
                 }
             }
