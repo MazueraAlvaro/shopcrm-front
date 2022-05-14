@@ -1,6 +1,10 @@
 pipeline {
-    agent any
-    tools {nodejs "nodejs-14"}
+    agent { 
+        docker { 
+            image 'node:14'
+            reuseNode true
+        }
+    }
     environment {
         ENV_NAME = "${env.GIT_BRANCH.contains('pr') ? 'PR' : env.GIT_BRANCH.substring(env.GIT_BRANCH.indexOf('/') + 1)}"
         DO_IMAGE_NAME = "mazueraalvaro/shopcrm-front"
