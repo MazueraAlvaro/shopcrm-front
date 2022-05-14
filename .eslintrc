@@ -1,0 +1,178 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "react-app",
+    "airbnb",
+    "airbnb/hooks",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "plugins": [
+    "import"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "rules": {
+    "default-case": "off",
+    "import/no-named-as-default": "off",
+    "import/prefer-default-export": "warn",
+    "no-use-before-define": "off",
+    "@typescript-eslint/no-use-before-define": [
+      "error"
+    ],
+    "no-shadow": "off", // replaced by ts-eslint rule @typescript-eslint/no-shadow
+    "@typescript-eslint/no-shadow": "error",
+    "no-underscore-dangle": [
+      "error",
+      {
+        "allow": [
+          "__typename"
+        ]
+      }
+    ],
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
+    ],
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          "builtin",
+          "external",
+          "internal"
+        ],
+        "pathGroups": [
+          {
+            "pattern": "react",
+            "group": "external",
+            "position": "before"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": [
+          "react"
+        ],
+        "newlines-between": "always",
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        }
+      }
+    ],
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": [
+          "mock-server.js",
+          "src/modules/shared/utils/testing.tsx",
+          "**/*.spec.ts",
+          "**/*.spec.tsx",
+          "**/*.stories.tsx"
+        ]
+      }
+    ],
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [
+          ".js",
+          ".jsx",
+          ".ts",
+          ".tsx"
+        ]
+      }
+    ],
+    // TODO: Remove when each rule is addressed
+    "import/no-unresolved": "warn",
+    "import/export": "warn",
+    "import/no-cycle": "warn",
+    "import/no-named-as-default-member": "warn",
+    "import/no-mutable-exports": "warn",
+    "no-restricted-syntax": "warn",
+    "no-await-in-loop": "warn",
+    "no-unused-expressions": "warn",
+    "no-param-reassign": "warn",
+    "no-useless-escape": "warn",
+    "no-restricted-globals": "warn",
+    "no-return-assign": "warn",
+    "prefer-promise-reject-errors": "warn",
+    "jsx-a11y/anchor-is-valid": "warn",
+    "jsx-a11y/click-events-have-key-events": "warn",
+    "jsx-a11y/no-static-element-interactions": "warn",
+    "jsx-a11y/img-redundant-alt": "warn",
+    "jsx-a11y/aria-role": "warn",
+    "react/no-unescaped-entities": "warn",
+    "react/jsx-props-no-spreading": "warn",
+    "react/no-array-index-key": "warn",
+    "react/require-default-props": "warn",
+    "react/default-props-match-prop-types": "warn",
+    "react/no-children-prop": "warn",
+    "react/no-unused-prop-types": "warn",
+    "react/button-has-type": "warn",
+    "react/prop-types": "warn",
+    "react/state-in-constructor": "warn",
+    "react/no-unused-state": "warn",
+    "react/destructuring-assignment": "warn",
+    "react/no-access-state-in-setstate": "warn",
+    "react/no-find-dom-node": "warn",
+    "react-hooks/exhaustive-deps": "warn"
+  },
+  "settings": {
+    "import/parsers": {
+      "@typescript-eslint/parser": [
+        ".ts",
+        ".tsx",
+        ".d.ts"
+      ]
+    },
+    "import/resolver": {
+      "typescript": {
+        "alwaysTryTypes": true
+      }
+    }
+  },
+  "overrides": [
+    {
+      "files": [
+        "next.config.js"
+      ],
+      "rules": {
+        "@typescript-eslint/no-require-imports": "off",
+        "@typescript-eslint/no-var-requires": "off"
+      }
+    },
+    {
+      "files": [
+        "jest.config.js"
+      ],
+      "rules": {
+        "@typescript-eslint/no-require-imports": "off",
+        "@typescript-eslint/no-var-requires": "off"
+      }
+    },
+    {
+      "files": [
+        "mock-server.js",
+        "server/**/*.js"
+      ],
+      "rules": {
+        "@typescript-eslint/no-require-imports": "off",
+        "@typescript-eslint/no-var-requires": "off",
+        "@typescript-eslint/explicit-function-return-type": "off"
+      }
+    },
+    {
+      "files": [
+        "*.d.ts"
+      ],
+      "rules": {
+        "import/no-duplicates": "off"
+      }
+    }
+  ]
+}
