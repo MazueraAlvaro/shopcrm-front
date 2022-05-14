@@ -2,7 +2,6 @@ pipeline {
     agent { 
         docker { 
             image 'node:14'
-            alwaysPull false
             reuseNode true
         }
     }
