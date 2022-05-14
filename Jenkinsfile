@@ -1,8 +1,14 @@
 pipeline {
-    agent any
-    tools {nodejs "nodejs-14"}
+    agent { 
+        docker { 
+            image 'node:14'
+            args "-u root"
+            alwaysPull false
+            reuseNode true
+        }
+    }
     environment {
-        ENV_NAME = "${env.GIT_BRANCH.contains('pr') ? 'PR' : env.GIT_BRANCH.substring(env.GIT_BRANCH.indexOf('/') + 1)}"
+        // ENV_NAME = "${env.GIT_BRANCH.contains('pr') ? 'PR' : env.GIT_BRANCH.substring(env.GIT_BRANCH.indexOf('/') + 1)}"
     }
     stages {
         stage('Build') {
