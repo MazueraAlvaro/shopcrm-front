@@ -107,7 +107,7 @@ pipeline {
                 echo "Deploy!!! ${env.ENV_NAME} ${env.GIT_BRANCH}"
                 sh "cat k8s/deployment-${env.ENV_NAME}.yml"
                 sh "cat k8s/service-${env.ENV_NAME}.yml"
-                //kubernetesDeploy(configs: "deploymentservice.yml", kubeconfigId: "kubernetes")
+                kubernetesDeploy(configs: "k8s/deployment-${env.ENV_NAME}.yml", kubeconfigId: "kubernetes")
             }
         }
     }
