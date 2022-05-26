@@ -84,12 +84,6 @@ pipeline {
             }
         }
         stage('Generate'){
-            when {
-                expression { return !env.GIT_BRANCH.contains('pr')}
-            }
-            
-        }
-        stage('Deploy to Kubernetes') {
             agent { 
                 docker { 
                     image 'node:14'
@@ -100,9 +94,17 @@ pipeline {
             when {
                 expression { return !env.GIT_BRANCH.contains('pr')}
             }
+            steps{
+                 sh 'npm run k8s:generate'
+            }
+        }
+        stage('Deploy to Kubernetes') {
+            
+            when {
+                expression { return !env.GIT_BRANCH.contains('pr')}
+            }
             steps {
                 echo "Deploy!!! ${env.ENV_NAME} ${env.GIT_BRANCH}"
-                npm run k8s:generate
                 //kubernetesDeploy(configs: "deploymentservice.yml", kubeconfigId: "kubernetes")
             }
         }
