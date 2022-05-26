@@ -95,7 +95,9 @@ pipeline {
                 expression { return !env.GIT_BRANCH.contains('pr')}
             }
             steps{
-                 sh 'npm run k8s:generate'
+                echo "Docker Image Tag: ${DO_IMAGE_TAG}"
+                 sh "DO_IMAGE_TAG=${DO_IMAGE_TAG} npm run k8s:generate"
+                 sh "cat k8s/deployment-${env.ENV_NAME}"
             }
         }
         stage('Deploy to Kubernetes') {
