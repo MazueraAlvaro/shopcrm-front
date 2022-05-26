@@ -21,6 +21,12 @@
     ],
     "no-shadow": "off", // replaced by ts-eslint rule @typescript-eslint/no-shadow
     "@typescript-eslint/no-shadow": "error",
+    "prettier/prettier": [
+      "error",
+      { 
+        "singleQuote": true
+      }
+    ],
     "no-underscore-dangle": [
       "error",
       {
