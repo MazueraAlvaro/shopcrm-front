@@ -95,9 +95,7 @@ pipeline {
                 expression { return !env.GIT_BRANCH.contains('pr')}
             }
             steps{
-                echo "Docker Image Tag: ${DO_IMAGE_TAG}"
-                 sh "DO_IMAGE_TAG=${DO_IMAGE_TAG} npm run k8s:generate"
-                 sh "cat k8s/deployment-${env.ENV_NAME}"
+                sh "DO_IMAGE_TAG=${DO_IMAGE_NAME}:${DO_IMAGE_TAG} npm run k8s:generate"
             }
         }
         stage('Deploy to Kubernetes') {
@@ -107,6 +105,8 @@ pipeline {
             }
             steps {
                 echo "Deploy!!! ${env.ENV_NAME} ${env.GIT_BRANCH}"
+                sh "cat k8s/deployment-${env.ENV_NAME}.yml"
+                sh "cat k8s/service-${env.ENV_NAME}.yml"
                 //kubernetesDeploy(configs: "deploymentservice.yml", kubeconfigId: "kubernetes")
             }
         }
