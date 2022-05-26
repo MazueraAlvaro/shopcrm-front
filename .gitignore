@@ -32,3 +32,6 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+k8s/deployment-*
+k8s/service-*
