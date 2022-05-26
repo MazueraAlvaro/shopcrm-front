@@ -1,9 +1,10 @@
 pipeline {
     agent any
     environment {
-        ENV_NAME = "develop"
+        ENV_NAME = "${env.GIT_BRANCH.contains('pr') ? 'PR' : env.GIT_BRANCH.substring(env.GIT_BRANCH.indexOf('/') + 1)}"
         DO_IMAGE_NAME = "mazueraalvaro/shopcrm-front"
         dockerImage = ""
+        DO_IMAGE_TAG = ""
     }
     stages {
         stage('Install Dependencies') {
@@ -75,18 +76,33 @@ pipeline {
                 }
             steps{
                 script {
+                    DO_IMAGE_TAG = "${BUILD_NUMBER }-${ENV_NAME}"
                     docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ){
-                    dockerImage.push("${ENV_NAME}")
+                    dockerImage.push(DO_IMAGE_TAG)
                     }
                 }
             }
         }
+        stage('Generate'){
+            when {
+                expression { return !env.GIT_BRANCH.contains('pr')}
+            }
+            
+        }
         stage('Deploy to Kubernetes') {
+            agent { 
+                docker { 
+                    image 'node:14'
+                    reuseNode true
+                    alwaysPull false
+                }
+            }
             when {
                 expression { return !env.GIT_BRANCH.contains('pr')}
             }
             steps {
                 echo "Deploy!!! ${env.ENV_NAME} ${env.GIT_BRANCH}"
+                npm run k8s:generate
                 //kubernetesDeploy(configs: "deploymentservice.yml", kubeconfigId: "kubernetes")
             }
         }

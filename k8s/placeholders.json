@@ -1,0 +1,13 @@
+{
+  "enviroments": [
+    {
+      "name": "develop",
+      "branch": "develop",
+      "placeholders": {
+        "POD_PORT": 3000,
+        "NODE_PORT": 32500,
+        "DOCKER_IMAGE": "mazueraalvaro/shopcrm-front:latest"
+      }
+    }
+  ]
+}
