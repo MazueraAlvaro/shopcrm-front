@@ -2,10 +2,10 @@ const fs = require('fs');
 const path = require('path');
 const yaml = require('js-yaml');
 const config = require('./placeholders.json');
-const enviroment = process.env.ENV_NAME;
+const environment = process.env.ENV_NAME;
 
-const placeholders = config.enviroments.find((el) => el.name === enviroment);
-if (!placeholders) throw new Error(`Placeholders for ${enviroment} not found`);
+const placeholders = config.environments.find((el) => el.name === environment);
+if (!placeholders) throw new Error(`Placeholders for ${environment} not found`);
 
 try {
   const deploymentData = readYaml('deployment');
@@ -42,6 +42,6 @@ function buildServiceYaml(data) {
 
 function writeYaml(data, kind) {
   const yamlStr = yaml.dump(data);
-  const yamlFileName = `${__dirname}/${kind}-${enviroment}.yml`;
+  const yamlFileName = `${__dirname}/${kind}-${environment}.yml`;
   fs.writeFileSync(yamlFileName, yamlStr, 'utf-8');
 }

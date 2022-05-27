@@ -1,5 +1,5 @@
 {
-  "enviroments": [
+  "environments": [
     {
       "name": "develop",
       "branch": "develop",
