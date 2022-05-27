@@ -35,7 +35,7 @@ function Layout({ children, title = 'This is the default title' }: Props) {
       {children}
       <footer>
         <hr />
-        <span>Soy el footer 👌</span>
+        <span>Soy el fruveeeer 👌</span>
       </footer>
     </div>
   );
