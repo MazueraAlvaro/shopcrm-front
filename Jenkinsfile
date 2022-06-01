@@ -78,7 +78,7 @@ pipeline {
                 script {
                     DO_IMAGE_TAG = "${BUILD_NUMBER }-${ENV_NAME}"
                     docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ){
-                    dockerImage.push(DO_IMAGE_TAG)
+                        dockerImage.push(DO_IMAGE_TAG)
                     }
                 }
             }
