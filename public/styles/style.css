@@ -735,6 +735,7 @@ ol {
     display: flex;
     align-items: center;
     padding-left: 75px;
+    background-image: url('../img/hero/banner.jpg');
 }
 
 .hero__text span {
@@ -2908,7 +2909,7 @@ ol {
 
 @media only screen and (min-width: 1200px) {
     .container {
-        max-width: 1170px;
+        max-width: 1170px !important;
     }
 }
 
