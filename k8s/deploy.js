@@ -8,13 +8,13 @@ const placeholders = config.environments.find((el) => el.name === environment);
 if (!placeholders) throw new Error(`Placeholders for ${environment} not found`);
 
 try {
-  const deploymentData = readYaml('deployment');
-  buildDeploymentYaml(deploymentData);
-  writeYaml(deploymentData, 'deployment');
-
-  const serviceData = readYaml('service');
-  buildServiceYaml(serviceData);
-  writeYaml(serviceData, 'service');
+  const file = process.argv[2];
+  const kind = process.argv[3];
+  const ymlData = readYaml(file);
+  if (kind === 'deployment') buildDeploymentYaml(ymlData);
+  else if (kind === 'service') buildServiceYaml(ymlData);
+  else throw new Error('No file kind specified');
+  writeYaml(ymlData, file);
 } catch (e) {
   console.error('There was an error generating k8s yaml files');
   throw e;

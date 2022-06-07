@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: shopcrm-front-deployment
+  name: shopcrm-front-storybook
   labels:
-    app: shopcrm-front
+    app: shopcrm-front-storybook
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: shopcrm-front
+      app: shopcrm-front-storybook
   template:
     metadata:
       labels:
-        app: shopcrm-front
+        app: shopcrm-front-storybook
     spec:
       containers:
-        - name: shopcrm-front
+        - name: shopcrm-front-storybook
           image: 'IMAGE'
           args:
-            - 'dev'
+            - 'storybook'
           ports:
             - containerPort: 'POD_PORT'
