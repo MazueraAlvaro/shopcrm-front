@@ -83,6 +83,32 @@ pipeline {
                 }
             }
         }
+        stage('Generate Storybook'){
+            agent { 
+                docker { 
+                    image 'node:14'
+                    reuseNode true
+                    alwaysPull false
+                }
+            }
+            when {
+                expression { return !env.GIT_BRANCH.contains('pr') && ENV_NAME=="develop"}
+            }
+            steps{
+                sh "DO_IMAGE_TAG=${DO_IMAGE_NAME}:${DO_IMAGE_TAG} ENV_NAME=storybook npm run k8s:generate sb-deployment deployment"
+                sh "DO_IMAGE_TAG=${DO_IMAGE_NAME}:${DO_IMAGE_TAG} ENV_NAME=storybook npm run k8s:generate sb-service service"
+            }
+        }
+        stage('Deploy Storybook') {
+            
+            when {
+                expression { return !env.GIT_BRANCH.contains('pr') && ENV_NAME=="develop"}
+            }
+            steps {
+                kubernetesDeploy(configs: "k8s/sb-deployment-${env.ENV_NAME}.yml", kubeconfigId: "kubernetes")
+                kubernetesDeploy(configs: "k8s/sb-service-${env.ENV_NAME}.yml", kubeconfigId: "kubernetes")
+            }
+        }
         stage('Generate'){
             agent { 
                 docker { 
@@ -95,7 +121,8 @@ pipeline {
                 expression { return !env.GIT_BRANCH.contains('pr')}
             }
             steps{
-                sh "DO_IMAGE_TAG=${DO_IMAGE_NAME}:${DO_IMAGE_TAG} npm run k8s:generate"
+                sh "DO_IMAGE_TAG=${DO_IMAGE_NAME}:${DO_IMAGE_TAG} npm run k8s:generate deployment deployment"
+                sh "DO_IMAGE_TAG=${DO_IMAGE_NAME}:${DO_IMAGE_TAG} npm run k8s:generate service service"
             }
         }
         stage('Deploy to Kubernetes') {
@@ -104,10 +131,8 @@ pipeline {
                 expression { return !env.GIT_BRANCH.contains('pr')}
             }
             steps {
-                echo "Deploy!!! ${env.ENV_NAME} ${env.GIT_BRANCH}"
-                sh "cat k8s/deployment-${env.ENV_NAME}.yml"
-                sh "cat k8s/service-${env.ENV_NAME}.yml"
                 kubernetesDeploy(configs: "k8s/deployment-${env.ENV_NAME}.yml", kubeconfigId: "kubernetes")
+                kubernetesDeploy(configs: "k8s/service-${env.ENV_NAME}.yml", kubeconfigId: "kubernetes")
             }
         }
     }
