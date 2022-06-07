@@ -35,3 +35,5 @@ yarn-error.log*
 
 k8s/deployment-*
 k8s/service-*
+
+storybook-static
