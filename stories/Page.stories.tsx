@@ -1,7 +1,9 @@
 import React from 'react';
+
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { within, userEvent } from '@storybook/testing-library';
-import { Page } from './Page';
+
+import Page from './Page';
 
 export default {
   title: 'Example/Page',
@@ -12,6 +14,7 @@ export default {
   },
 } as ComponentMeta<typeof Page>;
 
+// eslint-disable-next-line react/function-component-definition
 const Template: ComponentStory<typeof Page> = (args) => <Page {...args} />;
 
 export const LoggedOut = Template.bind({});
