@@ -15,7 +15,7 @@ COPY . /usr/src/app
 
 # Building app
 RUN npm run build
-EXPOSE 3000
+EXPOSE 3000 6006
 
 # Running the app
 ENTRYPOINT ["npm", "run"]
