@@ -16,7 +16,7 @@ pipeline {
                 }
             }
             steps {
-                sh 'npm ci'
+                sh 'npm install'
             }
         }
         stage('Static Analysis') {
