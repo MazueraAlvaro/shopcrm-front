@@ -31,6 +31,7 @@ function buildDeploymentYaml(data) {
   container.image = process.env.DO_IMAGE_TAG;
   const containerPort = container.ports[0];
   containerPort.containerPort = placeholders.placeholders[containerPort.containerPort];
+  data.metadata.namespace = placeholders.placeholders[data.metadata.namespace];
 }
 
 function buildServiceYaml(data) {
