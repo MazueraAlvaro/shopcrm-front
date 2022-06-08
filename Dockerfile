@@ -19,5 +19,4 @@ RUN npm run build-storybook
 EXPOSE 3000 6006
 
 # Running the app
-ENTRYPOINT ["npm", "run"]
-CMD ["dev"]
+CMD ["npm", "run", "dev"]

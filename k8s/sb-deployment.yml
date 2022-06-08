@@ -17,7 +17,6 @@ spec:
       containers:
         - name: shopcrm-front-storybook
           image: 'IMAGE'
-          args:
-            - 'storybook'
+          args: ['npx', 'http-server', './storybook-static']
           ports:
             - containerPort: 'POD_PORT'
