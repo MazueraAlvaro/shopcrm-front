@@ -105,8 +105,8 @@ pipeline {
                 expression { return !env.GIT_BRANCH.contains('pr') && ENV_NAME=="develop"}
             }
             steps {
-                kubernetesDeploy(configs: "k8s/sb-deployment-${env.ENV_NAME}.yml", kubeconfigId: "kubernetes")
-                kubernetesDeploy(configs: "k8s/sb-service-${env.ENV_NAME}.yml", kubeconfigId: "kubernetes")
+                kubernetesDeploy(configs: "k8s/sb-deployment-storybook.yml", kubeconfigId: "kubernetes")
+                kubernetesDeploy(configs: "k8s/sb-service-storybook.yml", kubeconfigId: "kubernetes")
             }
         }
         stage('Generate'){
