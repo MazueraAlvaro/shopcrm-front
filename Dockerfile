@@ -15,8 +15,8 @@ COPY . /usr/src/app
 
 # Building app
 RUN npm run build
-EXPOSE 3000 6006
+RUN npm run build-storybook
+EXPOSE 3000 8080
 
 # Running the app
-ENTRYPOINT ["npm", "run"]
-CMD ["dev"]
+CMD ["npm", "run", "dev"]
