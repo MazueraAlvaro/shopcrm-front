@@ -12,7 +12,7 @@
       "name": "storybook",
       "branch": "storybook",
       "placeholders": {
-        "POD_PORT": 8080,
+        "POD_PORT": 3000,
         "NODE_PORT": 32600
       }
     }
