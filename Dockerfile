@@ -16,7 +16,7 @@ COPY . /usr/src/app
 # Building app
 RUN npm run build
 RUN npm run build-storybook
-EXPOSE 3000 8080
+EXPOSE 3000
 
 # Running the app
 CMD ["npm", "run", "dev"]
