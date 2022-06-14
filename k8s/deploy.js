@@ -39,6 +39,7 @@ function buildServiceYaml(data) {
   servicePorts.port = placeholders.placeholders[servicePorts.port];
   servicePorts.targetPort = placeholders.placeholders[servicePorts.targetPort];
   servicePorts.nodePort = placeholders.placeholders[servicePorts.nodePort];
+  data.metadata.namespace = placeholders.placeholders[data.metadata.namespace];
 }
 
 function writeYaml(data, kind) {
