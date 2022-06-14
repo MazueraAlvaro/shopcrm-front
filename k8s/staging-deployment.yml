@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shopcrm-front-staging
+  namespace: 'ENVIRONMENT'
+  labels:
+    app: shopcrm-front-staging
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: shopcrm-front-staging
+  template:
+    metadata:
+      labels:
+        app: shopcrm-front-staging
+    spec:
+      containers:
+        - name: shopcrm-front-staging
+          image: 'IMAGE'
+          args:
+            - 'npm'
+            - 'run'
+            - 'staging'
+          ports:
+            - containerPort: 'POD_PORT'
