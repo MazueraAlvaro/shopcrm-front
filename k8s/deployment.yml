@@ -18,9 +18,6 @@ spec:
       containers:
         - name: shopcrm-front
           image: 'IMAGE'
-          args:
-            - 'npm'
-            - 'run'
-            - 'dev'
+          args: 'ARGS'
           ports:
             - containerPort: 'POD_PORT'

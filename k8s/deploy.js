@@ -32,6 +32,7 @@ function buildDeploymentYaml(data) {
   const containerPort = container.ports[0];
   containerPort.containerPort = placeholders.placeholders[containerPort.containerPort];
   data.metadata.namespace = placeholders.placeholders[data.metadata.namespace];
+  container.args = placeholders.placeholders[container.args];
 }
 
 function buildServiceYaml(data) {

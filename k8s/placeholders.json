@@ -6,7 +6,8 @@
       "placeholders": {
         "POD_PORT": 3000,
         "NODE_PORT": 32500,
-        "ENVIRONMENT": "develop"
+        "ENVIRONMENT": "develop",
+        "ARGS": ["npm", "run", "dev"]
       }
     },
     {
@@ -15,7 +16,8 @@
       "placeholders": {
         "POD_PORT": 3000,
         "NODE_PORT": 32502,
-        "ENVIRONMENT": "prod"
+        "ENVIRONMENT": "prod",
+        "ARGS": ["npm", "run", "start"]
       }
     },
     {
@@ -24,7 +26,8 @@
       "placeholders": {
         "POD_PORT": 3000,
         "NODE_PORT": 32501,
-        "ENVIRONMENT": "staging"
+        "ENVIRONMENT": "staging",
+        "ARGS": ["npm", "run", "start"]
       }
     },
     {
@@ -33,7 +36,8 @@
       "placeholders": {
         "POD_PORT": 3000,
         "NODE_PORT": 32600,
-        "ENVIRONMENT": "storybook"
+        "ENVIRONMENT": "default",
+        "ARGS": ["npx", "http-server", "./storybook-static"]
       }
     }
   ]
