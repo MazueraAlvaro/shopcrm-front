@@ -5,7 +5,29 @@
       "branch": "develop",
       "placeholders": {
         "POD_PORT": 3000,
-        "NODE_PORT": 32500
+        "NODE_PORT": 32500,
+        "ENVIRONMENT": "develop",
+        "ARGS": ["npm", "run", "dev"]
+      }
+    },
+    {
+      "name": "main",
+      "branch": "main",
+      "placeholders": {
+        "POD_PORT": 3000,
+        "NODE_PORT": 32502,
+        "ENVIRONMENT": "prod",
+        "ARGS": ["npm", "run", "start"]
+      }
+    },
+    {
+      "name": "staging",
+      "branch": "staging",
+      "placeholders": {
+        "POD_PORT": 3000,
+        "NODE_PORT": 32501,
+        "ENVIRONMENT": "staging",
+        "ARGS": ["npm", "run", "start"]
       }
     },
     {
@@ -13,7 +35,9 @@
       "branch": "storybook",
       "placeholders": {
         "POD_PORT": 3000,
-        "NODE_PORT": 32600
+        "NODE_PORT": 32600,
+        "ENVIRONMENT": "default",
+        "ARGS": ["npx", "http-server", "./storybook-static"]
       }
     }
   ]
