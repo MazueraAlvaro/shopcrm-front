@@ -25,7 +25,7 @@
       "branch": "staging",
       "placeholders": {
         "POD_PORT": 3000,
-        "NODE_PORT": 32501, 
+        "NODE_PORT": 32501,
         "ENVIRONMENT": "staging",
         "ARGS": ["npm", "run", "start"]
       }
