@@ -4,18 +4,59 @@
     "dev": "next",
     "build": "next build",
     "start": "next start",
-    "type-check": "tsc"
+    "type-check": "tsc",
+    "lint": "npm run lint:ts && npm run lint:eslint",
+    "lint:eslint": "eslint \"./**/*.{ts,tsx}\"",
+    "lint:ts": "tsc -p ./tsconfig.lint.json --noEmit",
+    "test": "jest --watchAll=false --passWithNoTests",
+    "test:coverage": "jest --coverage --watchAll=false --passWithNoTests",
+    "test:report": "jest --testResultsProcessor='jest-sonar-reporter' --coverage --watchAll=false --passWithNoTests",
+    "test:watch": "jest --watchAll=true --passWithNoTests",
+    "k8s:generate": "node k8s/deploy.js",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.1.1",
+    "bootstrap": "latest-4",
     "lodash": "^4.17.21",
     "next": "latest",
     "react": "^17.0.2",
+    "react-bootstrap": "^2.4.0",
     "react-dom": "^17.0.2"
   },
   "devDependencies": {
+    "@babel/core": "^7.18.2",
+    "@storybook/addon-actions": "^6.5.7",
+    "@storybook/addon-essentials": "^6.5.7",
+    "@storybook/addon-interactions": "^6.5.7",
+    "@storybook/addon-links": "^6.5.7",
+    "@storybook/builder-webpack5": "^6.5.7",
+    "@storybook/manager-webpack5": "^6.5.7",
+    "@storybook/react": "^6.5.7",
+    "@storybook/testing-library": "0.0.11",
     "@types/node": "^12.12.21",
     "@types/react": "^17.0.2",
     "@types/react-dom": "^17.0.1",
-    "typescript": "4.0"
+    "babel-loader": "^8.2.5",
+    "eslint": "^8.15.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-config-react-app": "^7.0.1",
+    "eslint-import-resolver-typescript": "^2.7.1",
+    "eslint-plugin-flowtype": "^8.0.3",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react-hooks": "^4.5.0",
+    "jest": "^28.0.3",
+    "js-yaml": "^4.1.0",
+    "prettier": "^2.6.2",
+    "ts-jest": "^28.0.1",
+    "typescript": "4.0",
+    "webpack": "^5.73.0"
+  },
+  "peerDependencies": {
+    "webpack": "*"
   }
 }

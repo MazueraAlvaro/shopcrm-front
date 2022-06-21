@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shopcrm-front-deployment
+  namespace: 'ENVIRONMENT'
+  labels:
+    app: shopcrm-front
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: shopcrm-front
+  template:
+    metadata:
+      labels:
+        app: shopcrm-front
+    spec:
+      containers:
+        - name: shopcrm-front
+          image: 'IMAGE'
+          args: 'ARGS'
+          ports:
+            - containerPort: 'POD_PORT'

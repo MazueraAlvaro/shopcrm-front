@@ -1,0 +1,7 @@
+.cache
+coverage
+node_modules
+public
+storybook-static
+k8s
+src/modules/shared/graphql/types.tsx
