@@ -16,7 +16,7 @@
       "placeholders": {
         "POD_PORT": 3000,
         "NODE_PORT": 32502,
-        "ENVIRONMENT": "prod",
+        "ENVIRONMENT": "prod", 
         "ARGS": ["npm", "run", "start"]
       }
     },
