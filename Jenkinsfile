@@ -54,7 +54,7 @@ pipeline {
                 }
             }
             steps {
-                sh 'npm test:coverage'
+                sh 'npm run test:coverage'
             }
         }
         stage('Image Build') {
