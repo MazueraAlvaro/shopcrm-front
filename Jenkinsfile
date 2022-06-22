@@ -95,8 +95,8 @@ pipeline {
                 expression { return !env.GIT_BRANCH.contains('pr') && ENV_NAME=="develop"}
             }
             steps{
-                sh "DO_IMAGE_TAG=${DO_IMAGE_NAME}:${DO_IMAGE_TAG} ENV_NAME=storybook npm run k8s:generate sb-deployment deployment"
-                sh "DO_IMAGE_TAG=${DO_IMAGE_NAME}:${DO_IMAGE_TAG} ENV_NAME=storybook npm run k8s:generate sb-service service"
+                sh "DO_IMAGE_TAG=${DO_IMAGE_NAME}:${DO_IMAGE_TAG} ENV_NAME=storybook npm run k8s:generate deployment deployment"
+                sh "DO_IMAGE_TAG=${DO_IMAGE_NAME}:${DO_IMAGE_TAG} ENV_NAME=storybook npm run k8s:generate service service"
             }
         }
         stage('Deploy Storybook') {
@@ -105,8 +105,8 @@ pipeline {
                 expression { return !env.GIT_BRANCH.contains('pr') && ENV_NAME=="develop"}
             }
             steps {
-                kubernetesDeploy(configs: "k8s/sb-deployment-storybook.yml", kubeconfigId: "kubernetes")
-                kubernetesDeploy(configs: "k8s/sb-service-storybook.yml", kubeconfigId: "kubernetes")
+                kubernetesDeploy(configs: "k8s/deployment-storybook.yml", kubeconfigId: "kubernetes")
+                kubernetesDeploy(configs: "k8s/service-storybook.yml", kubeconfigId: "kubernetes")
             }
         }
         stage('Generate'){
