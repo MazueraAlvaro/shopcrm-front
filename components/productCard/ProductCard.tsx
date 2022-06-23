@@ -1,6 +1,8 @@
 import React from 'react';
+
 import { Product } from '../../entities/product.entity';
-import './ProductCard.css'
+
+import './ProductCard.css';
 
 type Props = {
   product: Product;
@@ -13,30 +15,28 @@ function ProductCard({ product, onFavorite, onCart }: Props) {
     onFavorite(product);
   };
 
-  const handleCart = () =>{
+  const handleCart = () => {
     onCart(product);
-  }
+  };
 
   return (
     <div className='featured__item'>
-      <div className='featured__item__pic set-bg' style={{ backgroundImage: 'url(' + product.images[0] + ')' }}>
+      <div className='featured__item__pic set-bg' style={{ backgroundImage: `url( ${product.images[0]} )` }}>
         <ul className='featured__item__pic__hover'>
           <li>
-            <button data-testid='custom-favorite' onClick={handleLike}>
-              <i className='fa fa-heart' ></i>
+            <button type='button' data-testid='custom-favorite' onClick={handleLike}>
+              <i className='fa fa-heart' />
             </button>
           </li>
           <li>
-            <button data-testid='custom-cart' onClick={handleCart}>
-              <i className='fa fa-shopping-cart' ></i>
+            <button type='button' data-testid='custom-cart' onClick={handleCart}>
+              <i className='fa fa-shopping-cart' />
             </button>
           </li>
         </ul>
       </div>
       <div className='featured__item__text'>
-        <h6>
-          {product.name}
-        </h6>
+        <h6>{product.name}</h6>
         <h5>${product.price}</h5>
       </div>
     </div>
