@@ -23,8 +23,8 @@ function BreadCrumb({ pages, onSelected }: Props) {
             <div className='breadcrumb__text'>
               <h2>{pages[pages.length - 1].name}</h2>
               <div className='breadcrumb__option'>
-                {pages.map((page) => {
-                  if (page.name !== pages[pages.length - 1].name) {
+                {pages.map((page, index) => {
+                  if (index !== pages.length - 1) {
                     return (
                       <a key={page.id} href='#' onClick={(e) => handleClick(e, page)}>
                         {page.name}
