@@ -16,21 +16,25 @@ each(tsPaths, (value, key) => {
 
 module.exports = {
   collectCoverageFrom: [
-    'src/**/*.{ts,tsx}',
+    '**/*.{ts,tsx}',
     '!**/*.stories.{ts,tsx}',
     '!**/*.stub.ts',
     '!**/*.styles.ts',
     '!**/*.d.ts',
     '!**/index.ts',
+    '!components/L*.tsx',
+    '!components/layout/**/*.tsx',
   ],
   coveragePathIgnorePatterns: [
     '<rootDir>/node_modules/',
-    '<rootDir>/src/pages',
-    '<rootDir>/src/modules/core/components/Icon/components',
-    '<rootDir>/src/modules/core/components/Icon/utils',
-    '<rootDir>/src/modules/core/components/Icon/SVGFiles',
-    '<rootDir>/src/modules/core/components/Icon/createSvgIcon',
-    '<rootDir>/src/modules/shared/graphql/',
+    '<rootDir>/pages',
+    '<rootDir>/stories',
+    '<rootDir>/utils',
+    '<rootDir>/modules/core/components/Icon/components',
+    '<rootDir>/modules/core/components/Icon/utils',
+    '<rootDir>/modules/core/components/Icon/SVGFiles',
+    '<rootDir>/modules/core/components/Icon/createSvgIcon',
+    '<rootDir>/modules/shared/graphql/',
   ],
   coverageThreshold: {
     global: {
@@ -53,8 +57,8 @@ module.exports = {
     '\\.(scss|sass|css)$': 'identity-obj-proxy',
     '^@core/(.*)$': '<rootDir>/src/modules/core/$1',
     '^@icons': '<rootDir>/src/modules/core/components/Icon/components',
-    '^@modules/(.*)$': '<rootDir>/src/modules/$1',
-    '^@shared/(.*)$': '<rootDir>/src/modules/shared/$1',
+    '^@modules/(.*)$': '<rootDir>/modules/$1',
+    '^@shared/(.*)$': '<rootDir>/modules/shared/$1',
     '^@storybook-local/(.*)$': '<rootDir>/.storybook/$1',
     ...jestModuleMappers,
   },
