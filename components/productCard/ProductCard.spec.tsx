@@ -10,6 +10,9 @@ const product = {
   category_id: 21,
   price: 1100,
   images: ['https://technext.github.io/ogani/img/product/product-6.jpg'],
+  description:
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis quis convallis purus. Donec dignissim eleifend sem, eu tempor libero ornare at. Phasellus condimentum semper efficitur. Suspendisse potenti. Praesent semper, orci ut vestibulum dictum, arcu nulla tincidunt tortor, et commodo odio mi quis orci. In luctus felis et dolor rhoncus, non interdum enim venenatis. Vestibulum consectetur, augue quis pellentesque dictum, ante dui tempor odio, eu finibus ex libero quis nulla. Nullam auctor elit in enim viverra, id viverra lectus euismod. Etiam et turpis neque. Aenean sollicitudin mauris eu ante malesuada volutpat. Praesent ipsum arcu, feugiat eu mi vitae, consectetur malesuada erat. Proin varius tincidunt mi, ut vestibulum nisl efficitur egestas.',
+  score: 4.5,
 };
 
 describe('ProductCard component', () => {

@@ -4,4 +4,6 @@ export interface Product {
   category_id: number;
   price: number;
   images: Array<string>;
+  description: string;
+  score: number;
 }
