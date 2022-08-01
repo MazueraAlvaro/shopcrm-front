@@ -1,14 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
+
+import { Category } from '../../entities/category.entity';
 
 type Props = {
   onSelected: (Category) => void;
   categories: Array<Category>;
 };
-
-interface Category {
-  id: number;
-  name: string;
-} // Se debe crear para definir el tipo de datos de un objeto que se desee almacenar en un array.
 
 function SectionMenu({ categories, onSelected }: Props) {
   const handleClick = (e, category) => {
